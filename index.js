@@ -20,32 +20,32 @@ const { log } = require('console');
 
     for (i = 0; i < figuruDydziai.length; i++) {
         const param = figuruDydziai[i];
-        await _data.create('figuros', `figura-${i + 1}`, param)
+        await _data.create('figuros', `figura-${i}`, param)
     }
 
     // perskaitom failus ir atnaujiname
 
 
     for (i = 0; i < figuruDydziai.length; i++) {
-        let figure = await _data.read('figuros', `figura-${i + 1}`)
+        let figure = await _data.read('figuros', `figura-${i}`)
 
         //objecto destrukturizacija?
 
         const { width, height } = helpers.parseJsonToObject(figure);
 
-        const figureSize = Figura.size(width, height);
+        const size = Figura.size(width, height);
 
-        let text = `figura-${width}-${height}-${figureSize}`
+        const text = `figura-${width}-${height}-${size}`
 
         const hash = helpers.hash(text)
 
         const parsedInfo = {
             width,
             height,
-            size: figureSize,
+            size,
             hash
         }
-        await _data.update('figuros', `figura-${i + 1}`, parsedInfo)
+        await _data.update('figuros', `figura-${i}`, parsedInfo)
 
     }
     const allFiles = await _data.list('figuros')
