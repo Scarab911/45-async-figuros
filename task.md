@@ -16,7 +16,7 @@ Perskaitome failus ir juos atnaujiname papildomomis savybemis `plotas` ir `hash`
 
 Ploto reiksme gauname panaudoje `Figura.size()` metoda
 
-Hash yra apskaiciuojamas naudojant `helpers.hash()` metoda, kuriam yra duodama `string` tipo reiksme, kuria sulipdome tokiu principu: figura-[plotas]-[aukstis]-[plotas]
+Hash yra apskaiciuojamas naudojant `helpers.hash()` metoda, kuriam yra duodama `string` tipo reiksme, kuria sulipdome tokiu principu: figura-[plotis]-[aukstis]-[plotas]
 
 Isspausdinti visu failu pavadinimus kaip `array` su `data.list()` metodu
 

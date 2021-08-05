@@ -9,7 +9,7 @@ class Figura {
     }
 
     static size(width, height) {
-
+        return width * height;
     }
     static random() {
         return Math.floor(Math.random() * 10) + 1;

@@ -1,6 +1,7 @@
 const _data = require('./lib/data');
 const helpers = require('./lib/helpers');
 const Figura = require('./js/Figura');
+const { log } = require('console');
 
 (async () => {
 
@@ -14,7 +15,7 @@ const Figura = require('./js/Figura');
         {width: 8, height: 6},
     ]
     */
-    console.log(figuruDydziai);
+    Figura.size()
     // sukuriam failus
 
     for (i = 0; i < figuruDydziai.length; i++) {
@@ -24,9 +25,32 @@ const Figura = require('./js/Figura');
 
     // perskaitom failus ir atnaujiname
 
+
     for (i = 0; i < figuruDydziai.length; i++) {
+        let figure = await _data.read('figuros', `figura-${i + 1}`)
+
+        //objecto destrukturizacija?
+
+        const { width, height } = helpers.parseJsonToObject(figure);
+
+        const figureSize = Figura.size(width, height);
+
+        let text = `figura-${width}-${height}-${figureSize}`
+
+        const hash = helpers.hash(text)
+
+        const parsedInfo = {
+            width,
+            height,
+            size: figureSize,
+            hash
+        }
+        await _data.update('figuros', `figura-${i + 1}`, parsedInfo)
 
     }
+    const allFiles = await _data.list('figuros')
+    console.log(allFiles);
+
 
     // spausdiname visus failu pavadinimus
 
